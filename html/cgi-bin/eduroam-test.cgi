@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ###### Adjust to your local environment #####
-RADIUS_SERVER=127.0.0.1
-CLIENT_SECRET=mysecret
+# RADIUS_SERVER=127.0.0.1
+# CLIENT_SECRET=mysecret
 #####
 
 # Read GET variables
@@ -19,7 +19,6 @@ if [ -e $LOGIN -a -e $PASS ]; then
 echo -n -e "Content-Type: text/html\n\n"
 
 echo "<html><head><title>eduroam test</title></head><body>"
-
 echo '<h2>eduroam test</h2>'
 echo '<p>Provide just <b>TEST</b> credentials, do not entry credentials of real accounts.</p>'
 echo '<p>Test tries EAP-PEAP MSCHAPv2 and EAP-TTLS PAP authentication.</p>'
@@ -70,7 +69,7 @@ cat $TMP_FILE
 printf "</pre>\n"
 
 TMP_OUT=`mktemp --tmpdir=/dev/shm/`
-OUT=`/usr/local/bin/eapol_test -c $TMP_FILE -s $CLIENT_SECRET -a $RADIUS_SERVER 2>&1 >/${TMP_OUT}`
+OUT=`/usr/bin/eapol_test -c $TMP_FILE -s $CLIENT_SECRET -a $RADIUS_SERVER 2>&1 >/${TMP_OUT}`
 RET=$?
 
 if [ $RET -ne 0 ] ;then
@@ -113,7 +112,7 @@ cat $TMP_FILE
 printf "</pre>\n"
 
 TMP_OUT=`mktemp --tmpdir=/dev/shm/`
-OUT=`/usr/local/bin/eapol_test -c $TMP_FILE -s $CLIENT_SECRET -a $RADIUS_SERVER 2>&1 >/${TMP_OUT}`
+OUT=`/usr/bin/eapol_test -c $TMP_FILE -s $CLIENT_SECRET -a $RADIUS_SERVER 2>&1 >/${TMP_OUT}`
 RET=$?
 
 if [ $RET -ne 0 ] ;then
